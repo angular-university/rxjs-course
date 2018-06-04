@@ -1,10 +1,9 @@
 import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 import {Course} from '../model/course';
-import {Observable} from 'rxjs/Observable';
+import {Observable, of} from 'rxjs';
 import {CoursesService} from './courses.service';
 import {first, tap} from 'rxjs/operators';
-import {of} from 'rxjs/observable/of';
 import {isPlatformServer} from '@angular/common';
 import {makeStateKey, TransferState} from '@angular/platform-browser';
 

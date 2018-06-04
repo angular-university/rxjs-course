@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Course} from "../model/course";
-import {Observable} from "rxjs/Observable";
+import {Observable} from "rxjs";
 import {CoursesService} from "../services/courses.service";
 import {map, tap} from 'rxjs/operators';
 
@@ -25,6 +25,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
+
+
 
 
 
