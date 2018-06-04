@@ -1,0 +1,18 @@
+
+<div class="courses-panel">
+
+    <mat-tab-group>
+
+        <mat-tab label="All Courses">
+
+            <courses-card-list
+                    [courses]="courses$ | async">
+
+            </courses-card-list>
+
+        </mat-tab>
+
+    </mat-tab-group>
+
+</div>
+

@@ -1,0 +1,50 @@
+<mat-sidenav-container fullscreen>
+
+    <mat-sidenav #start>
+        <mat-nav-list>
+
+            <a mat-list-item routerLink="/">
+                <mat-icon>library_books</mat-icon>
+                <span>Courses</span>
+            </a>
+
+            <a mat-list-item>
+                <mat-icon>person_add</mat-icon>
+                <span>Register</span>
+            </a>
+
+            <a mat-list-item>
+                <mat-icon>account_circle</mat-icon>
+                <span>Login</span>
+            </a>
+
+        </mat-nav-list>
+
+    </mat-sidenav>
+
+    <mat-toolbar color="primary">
+        <button mat-icon-button (click)="start.open('mouse')">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </mat-toolbar>
+
+
+    <ng-container>
+
+        <router-outlet></router-outlet>
+
+    </ng-container>
+
+
+    <div class="spinner-container" *appShellRender>
+
+        <mat-spinner></mat-spinner>
+
+    </div>
+
+
+
+
+
+
+</mat-sidenav-container>

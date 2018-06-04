@@ -1,0 +1,16 @@
+
+>>> body {
+    margin: 0;
+}
+
+main {
+    margin: 30px;
+}
+
+.spinner-container {
+    height: 360px;
+    margin: 100px auto;
+    text-align: center;
+    max-width: 100px;
+}
+
