@@ -5,21 +5,9 @@
   "scripts": {
     "ng": "ng",
     "start": "./node_modules/.bin/ng serve",
-    "build:client-app:prod": "./node_modules/.bin/ng build --prod",
-    "build:server-app:prod": "./node_modules/.bin/ng run angular-universal-course:server",
-    "build-all": "./node_modules/.bin/npm-run-all build:client-app:prod build:server-app:prod build:functions",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "prerender": "./node_modules/.bin/ts-node ./prerender.ts",
-    "prerender:debug": "./node_modules/.bin/ts-node --inspect ./prerender.ts",
-    "start:express-server": "./node_modules/.bin/ts-node ./server.ts",
-    "build:functions": "cd functions && npm run build",
-    "move-index": "mv ./dist/index.html ./functions/lib/index-server.html",
-    "firebase:serve": "firebase serve --only hosting,functions",
-    "deploy": "firebase deploy",
-    "start:local": "npm-run-all build-all move-index firebase:serve",
-    "build-and-deploy:prod": "npm-run-all build-all move-index deploy"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {

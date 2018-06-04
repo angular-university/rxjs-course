@@ -1,11 +1,11 @@
 
 ## Angular Universal Course
 
-This repository contains the code of the [Angular Universal Course](https://angular-university.io/course/angular-universal-course).
+This repository contains the code of the [RxJs Masterclass](https://angular-university.io/course/rxjs-course).
 
-This course repository is updated to Angular v6, and there is a  package-lock.json file available, for avoiding semantic versioning installation issues.
+This course repository is updated to RxJs 6, and there is a  package-lock.json file available, for avoiding semantic versioning installation issues.
 
-![Angular Universal Course](https://s3-us-west-1.amazonaws.com/angular-university/course-images/angular-universal-small.png)
+![RxJs Course](https://s3-us-west-1.amazonaws.com/angular-university/course-images/angular-universal-small.png)
 
 
 # Installation pre-requisites
@@ -32,11 +32,11 @@ With the following command the angular-cli will be installed globally in your ma
 
 We can install the master branch using the following commands:
 
-    git clone https://github.com/angular-university/angular-universal-course.git
+    git clone https://github.com/angular-university/rxjs-course.git
 
 This repository is made of several separate npm modules, that are installable separately. For example, to run the au-input module, we can do the following:
 
-    cd angular-universal-course
+    cd rxjs-course
     npm install
 
 Its also possible to install the modules as usual using npm:
