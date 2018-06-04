@@ -10,18 +10,18 @@ import {API_URL} from '../common/constants';
 export class CoursesService {
 
     findCourseById(courseId: string): Observable<Course> {
-        return this.httpToObservable(`${API_URL}/courses/${courseId}.json`);
+        return this.createHttpObservable(`${API_URL}/courses/${courseId}.json`);
     }
 
     findAllCourses(): Observable<Course[]> {
-        return this.httpToObservable(`${API_URL}/courses.json`);
+        return this.createHttpObservable(`${API_URL}/courses.json`);
     }
 
     findAllCourseLessons(courseId: string): Observable<Lesson[]> {
-        return this.httpToObservable(`${API_URL}/lessons/${courseId}.json`);
+        return this.createHttpObservable(`${API_URL}/lessons/${courseId}.json`);
     }
 
-    httpToObservable(url: string) {
+    createHttpObservable(url: string) {
         return Observable.create(observer => {
             fetch(url)
                 .then(response => response.json())

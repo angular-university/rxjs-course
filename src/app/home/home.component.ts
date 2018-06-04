@@ -18,10 +18,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
+
+
         this.courses$ = this.coursesService.findAllCourses()
             .pipe(
                 map(Object.values)
             );
+
+
+
+
     }
 
     ngAfterViewInit() {
