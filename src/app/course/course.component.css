@@ -49,4 +49,9 @@
 
 .lessons-table th {
     padding: 20px;
+    color: rgba(0,0,0,.54);
+}
+
+.lessons-table td {
+    padding: 10px;
 }
