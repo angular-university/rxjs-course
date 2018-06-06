@@ -40,7 +40,10 @@ export class CourseDialogComponent implements OnInit {
 
         fetch(`/api/courses/${this.course.id}`, {
             body: JSON.stringify(this.form.value),
-            method:'PUT'
+            method:'PUT',
+            headers: {
+                'content-type': 'application/json'
+            }
         });
 
 

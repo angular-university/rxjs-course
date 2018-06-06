@@ -4,10 +4,11 @@ import {COURSES} from "./db-data";
 
 export function saveCourse(req: Request, res: Response) {
 
-    console.log("Saving course ...");
-
     const id = req.params["id"],
         changes = req.body;
+
+    console.log("Saving course", id, JSON.stringify(changes));
+
 
     COURSES[id] = {
         ...COURSES[id],
