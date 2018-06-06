@@ -3,6 +3,7 @@ import {Course} from "../model/course";
 import {Observable} from "rxjs";
 import {CoursesService} from "../services/courses.service";
 import {map} from "rxjs/operators";
+import {createHttpObservable} from '../common/util';
 
 @Component({
     selector: 'home',
@@ -15,13 +16,16 @@ export class HomeComponent implements OnInit {
 
     advancedCourses$: Observable<Course[]>;
 
-    constructor(private coursesService: CoursesService) {
+    constructor() {
 
     }
 
     ngOnInit() {
 
-        const courses$ = this.coursesService.findAllCourses();
+        const courses$: Observable<Course[]> = createHttpObservable('/api/courses')
+            .pipe(
+                map(res => res['payload'])
+            );
 
         this.beginnerCourses$ = courses$.pipe(
           map(courses => courses.filter(course => course.category === 'BEGINNER') )

@@ -13,9 +13,9 @@ export function searchLessons(req: Request, res: Response) {
 
     const courseId = queryParams.courseId,
           filter = queryParams.filter || '',
-          sortOrder = queryParams.sortOrder,
+          sortOrder = queryParams.sortOrder || 'asc',
           pageNumber = parseInt(queryParams.pageNumber) || 0,
-          pageSize = parseInt(queryParams.pageSize);
+          pageSize = parseInt(queryParams.pageSize) || 3;
 
     let lessons = Object.values(LESSONS).filter(lesson => lesson.courseId == courseId).sort((l1, l2) => l1.id - l2.id);
 
@@ -28,6 +28,8 @@ export function searchLessons(req: Request, res: Response) {
     }
 
     const initialPos = pageNumber * pageSize;
+
+    console.log(pageNumber, pageSize);
 
     const lessonsPage = lessons.slice(initialPos, initialPos + pageSize);
 

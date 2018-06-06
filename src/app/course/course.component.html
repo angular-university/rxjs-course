@@ -1,59 +1,31 @@
-<div class="course">
+<div class="course" *ngIf="(course$ | async) as course">
 
     <h2>{{course?.description}}</h2>
 
     <img class="course-thumbnail" [src]="course?.iconUrl">
 
-    <mat-form-field>
+    <mat-form-field class="search-bar">
 
-        <input matInput placeholder="Search lessons" #input>
+        <input matInput placeholder="Type your search" #input>
 
     </mat-form-field>
 
-    <div class="spinner-container" *ngIf="dataSource.loading$ | async">
 
-        <mat-spinner></mat-spinner>
+    <table class="lessons-table">
 
-    </div>
+        <thead>
+            <th>#</th>
+            <th>Description</th>
+            <th>Duration</th>
+        </thead>
 
-    <mat-table class="lessons-table mat-elevation-z8" [dataSource]="dataSource"
-               matSort matSortActive="seqNo" matSortDirection="asc" matSortDisableClear>
+        <tr *ngFor="let lesson of (lessons$ | async)">
+            <td class="seqno-cell">{{lesson.seqNo}}</td>
+            <td class="description-cell">{{lesson.description}}</td>
+            <td class="duration-cell">{{lesson.duration}}</td>
+        </tr>
 
-        <ng-container matColumnDef="seqNo">
-
-            <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
-
-            <mat-cell *matCellDef="let lesson">{{lesson.seqNo}}</mat-cell>
-
-        </ng-container>
-
-        <ng-container matColumnDef="description">
-
-            <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
-
-            <mat-cell class="description-cell"
-                      *matCellDef="let lesson">{{lesson.description}}</mat-cell>
-
-        </ng-container>
-
-        <ng-container matColumnDef="duration">
-
-            <mat-header-cell *matHeaderCellDef>Duration</mat-header-cell>
-
-            <mat-cell class="duration-cell"
-                      *matCellDef="let lesson">{{lesson.duration}}</mat-cell>
-
-        </ng-container>
-
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-
-        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-
-    </mat-table>
-
-
-    <mat-paginator [length]="course?.lessonsCount" [pageSize]="3"
-                   [pageSizeOptions]="[3, 5, 10]"></mat-paginator>
+    </table>
 
 
 </div>

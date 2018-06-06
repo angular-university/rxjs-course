@@ -23,7 +23,6 @@ import {
 } from "@angular/material";
 import {CoursesService} from "./services/courses.service";
 import {HttpClientModule} from "@angular/common/http";
-import {CourseResolver} from "./services/course.resolver";
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatMomentDateModule} from "@angular/material-moment-adapter";
@@ -62,8 +61,7 @@ import {MatMomentDateModule} from "@angular/material-moment-adapter";
         ReactiveFormsModule
     ],
     providers: [
-        CoursesService,
-        CourseResolver
+        CoursesService
     ],
     bootstrap: [AppComponent],
     entryComponents: [CourseDialogComponent]
