@@ -20,24 +20,17 @@ export class CoursesCardListComponent implements OnInit {
 
     }
 
-    editCourse({description, longDescription, category}:Course) {
+    editCourse(course:Course) {
 
         const dialogConfig = new MatDialogConfig();
 
         dialogConfig.disableClose = true;
         dialogConfig.autoFocus = true;
 
-        dialogConfig.data = {
-            description, longDescription, category
-        };
+        dialogConfig.data = course;
 
-        const dialogRef = this.dialog.open(CourseDialogComponent,
-            dialogConfig);
+        const dialogRef = this.dialog.open(CourseDialogComponent, dialogConfig);
 
-
-        dialogRef.afterClosed().subscribe(
-            val => console.log("Dialog output:", val)
-        );
 
     }
 

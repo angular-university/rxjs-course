@@ -1,7 +1,7 @@
 
-## Angular Material Course
+## The RxJs Masterclass
 
-This repository contains the code of the [Angular Material Course](https://angular-university.io/course/angular-material-course).
+This repository contains the code of the [RxJs Masterclass](https://angular-university.io/course/angular-material-course).
 
 This course repository is updated to Angular v6, and there is a  package-lock.json file available, for avoiding semantic versioning installation issues.
 

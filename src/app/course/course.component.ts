@@ -22,8 +22,7 @@ export class CourseComponent implements OnInit, AfterViewInit {
 
     @ViewChild('input') input: ElementRef;
 
-    constructor(private route: ActivatedRoute,
-                private coursesService: CoursesService) {
+    constructor(private route: ActivatedRoute) {
 
 
     }

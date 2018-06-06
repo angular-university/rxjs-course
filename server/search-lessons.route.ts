@@ -29,8 +29,6 @@ export function searchLessons(req: Request, res: Response) {
 
     const initialPos = pageNumber * pageSize;
 
-    console.log(pageNumber, pageSize);
-
     const lessonsPage = lessons.slice(initialPos, initialPos + pageSize);
 
     setTimeout(() => {
