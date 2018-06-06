@@ -30,7 +30,7 @@
 
     <mat-form-field>
 
-        <input matInput [matDatepicker]="myDatepicker"
+        <input matInput [matDatepicker]="myDatepicker" #searchInput
             formControlName="releasedAt">
 
         <mat-datepicker-toggle matSuffix
@@ -61,7 +61,7 @@
         Close
     </button>
 
-    <button class="mat-raised-button mat-primary" #saveButton (click)="save()">
+    <button class="mat-raised-button mat-primary" #saveButton>
         Save
     </button>
 
