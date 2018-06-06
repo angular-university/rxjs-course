@@ -40,5 +40,13 @@
 
 
 .lessons-table tr {
-    min-height: 30px;
+    height: 60px;
+}
+
+.lessons-table td {
+    border-top: 1px solid  rgba(0,0,0,.12);
+}
+
+.lessons-table th {
+    padding: 20px;
 }

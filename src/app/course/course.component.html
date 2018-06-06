@@ -11,7 +11,7 @@
     </mat-form-field>
 
 
-    <table class="lessons-table">
+    <table class="lessons-table mat-elevation-z7" *ngIf="(lessons$ | async) as lessons">
 
         <thead>
             <th>#</th>
@@ -19,7 +19,7 @@
             <th>Duration</th>
         </thead>
 
-        <tr *ngFor="let lesson of (lessons$ | async)">
+        <tr *ngFor="let lesson of lessons">
             <td class="seqno-cell">{{lesson.seqNo}}</td>
             <td class="description-cell">{{lesson.description}}</td>
             <td class="duration-cell">{{lesson.duration}}</td>
