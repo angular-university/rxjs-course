@@ -1,7 +1,6 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Course} from "../model/course";
-import {CoursesService} from "../services/courses.service";
 import {
     debounceTime,
     distinctUntilChanged,
