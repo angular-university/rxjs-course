@@ -1,16 +1,16 @@
 
-## The RxJs Masterclass
+## The RxJs MasterClass
 
-This repository contains the code of the [RxJs Masterclass](https://angular-university.io/course/angular-material-course).
+This repository contains the code of the [RxJs MasterClass](https://angular-university.io/course/rxjs-course).
 
 This course repository is updated to Angular v6, and there is a  package-lock.json file available, for avoiding semantic versioning installation issues.
 
-![Angular Material Course](https://s3-us-west-1.amazonaws.com/angular-university/course-images/material_design.png)
+![RxJs MasterClass](https://s3-us-west-1.amazonaws.com/angular-university/course-images/material_design.png)
 
 
 # Installation pre-requisites
 
-IMPORTANT: Please use NPM 5 or above, to make sure the package-lock.json is used.
+IMPORTANT: Please use the latest Node and especially NPM, to make sure the package-lock.json is used.
 
 For running this project we need and npm installed on our machine. These are some tutorials to install node in different operating systems:
 
@@ -32,11 +32,11 @@ With the following command the angular-cli will be installed globally in your ma
 
 We can install the master branch using the following commands:
 
-    git clone https://github.com/angular-university/angular-material-course.git
+    git clone https://github.com/angular-university/rxjs-course.git
     
 This repository is made of several separate npm modules, that are installable separately. For example, to run the au-input module, we can do the following:
     
-    cd angular-material-course
+    cd rxjs-course
     npm install
 
 Its also possible to install the modules as usual using npm:
@@ -49,7 +49,7 @@ This should take a couple of minutes. If there are issues, please post the compl
 
 # To Run the Development Backend Server
 
-We can start the sample application backend with the following command:
+In order to be able to provide realistic examples, we will need in our playground a small REST API backend server. We can start the sample application backend with the following command:
 
     npm run server
 
