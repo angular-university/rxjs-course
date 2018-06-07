@@ -12,7 +12,7 @@ import {
     concatMap,
     switchMap,
     withLatestFrom,
-    concatAll
+    concatAll, shareReplay
 } from 'rxjs/operators';
 import {merge, fromEvent, Observable, concat} from 'rxjs';
 import {createHttpObservable} from '../common/util';
@@ -42,11 +42,12 @@ export class CourseComponent implements OnInit, AfterViewInit {
 
         const courseId = this.route.snapshot.params['id'];
 
-        this.course$ = createHttpObservable(`/api/courses/${courseId}`);
+        this.course$ = createHttpObservable(`/api/courses/${courseId}`).pipe(shareReplay());
 
     }
 
     ngAfterViewInit() {
+
 
         const searchLessons$ = fromEvent<any>(this.input.nativeElement, 'keyup')
             .pipe(
