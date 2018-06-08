@@ -5,7 +5,7 @@ This repository contains the code of the [RxJs In Practice Course](https://angul
 
 This course repository is updated to Angular v6, and there is a  package-lock.json file available, for avoiding semantic versioning installation issues.
 
-![RxJs MasterClass](https://s3-us-west-1.amazonaws.com/angular-university/course-images/material_design.png)
+![RxJs In Practice Course](https://s3-us-west-1.amazonaws.com/angular-university/course-images/rxjs-in-practice-course.png)
 
 
 # Installation pre-requisites
