@@ -2,6 +2,16 @@
 
 export const COURSES: any = {
 
+    0: {
+        id: 0,
+        description: "RxJs In Practice Course",
+        iconUrl: 'https://s3-us-west-1.amazonaws.com/angular-university/course-images/rxjs-in-practice-course.png',
+        courseListIcon: 'https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png',
+        longDescription: "Understand the RxJs Observable pattern, learn the RxJs Operators via practical examples",
+        category: 'BEGINNER',
+        lessonsCount: 10
+    },
+
     1: {
         id: 1,
         description: "Angular for Beginners",
@@ -72,7 +82,6 @@ export const COURSES: any = {
 
 
 export const LESSONS = {
-
     1: {
         id: 1,
         "description": "Angular Tutorial For Beginners - Build Your First App - Hello World Step By Step",
@@ -287,7 +296,47 @@ export const LESSONS = {
         "duration": "5:38",
         "seqNo": 8,
         courseId: 3
-    }
+    },
+
+    30: {
+        id: 30,
+        "description": "Welcome to the RxJs In Practice Course",
+        "duration": "4:17",
+        "seqNo": 1,
+        courseId: 0
+    },
+    31: {
+        id: 31,
+        "description": "Introduction to the  Observable Pattern",
+        "duration": "2:07",
+        "seqNo": 2,
+        courseId: 0
+    },
+    32: {
+        id: 32,
+        "description": "The map and filter RxJs Operators",
+        "duration": "2:33",
+        "seqNo": 3,
+        courseId: 0
+    },
+    34: {
+        id: 33,
+        "description": "The switchMap, concatMap and mergeMap RxJs Operators",
+        "duration": "4:44",
+        "seqNo": 4,
+        courseId: 0
+    },
+    35: {
+        id: 35,
+        "description": "Error Handling in RxJs",
+        "duration": "2:55",
+        "seqNo": 5,
+        courseId: 0
+    },
+
+
+
+
 
 };
 
