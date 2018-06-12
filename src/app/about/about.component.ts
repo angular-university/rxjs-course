@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {fromEvent, interval, noop, observable, Observable, timer} from 'rxjs';
-import {delayWhen, map, timeout} from 'rxjs/operators';
+import {delayWhen, filter, map, timeout} from 'rxjs/operators';
 import {createHttpObservable} from '../common/util';
 
 @Component({
@@ -11,7 +11,6 @@ import {createHttpObservable} from '../common/util';
 export class AboutComponent implements OnInit {
 
     ngOnInit() {
-
 
 
     }
