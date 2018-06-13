@@ -15,6 +15,7 @@ import {fromPromise} from 'rxjs/internal-compatibility';
 export class CourseDialogComponent implements OnInit, AfterViewInit {
 
     form: FormGroup;
+
     course:Course;
 
     @ViewChild('saveButton') saveButton: ElementRef;
