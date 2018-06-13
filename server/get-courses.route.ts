@@ -16,7 +16,12 @@ export function getAllCourses(req: Request, res: Response) {
     }
     else {
     */
+
+    setTimeout(() => {
+
         res.status(200).json({payload:Object.values(COURSES)});
+    }, 200);
+
    // }
 }
 
