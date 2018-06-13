@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {concat, fromEvent, interval, noop, observable, Observable, of, timer} from 'rxjs';
+import {concat, fromEvent, interval, noop, observable, Observable, of, timer, merge} from 'rxjs';
 import {delayWhen, filter, map, take, timeout} from 'rxjs/operators';
 import {createHttpObservable} from '../common/util';
 
