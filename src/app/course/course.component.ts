@@ -14,8 +14,9 @@ import {
     concatAll, shareReplay
 } from 'rxjs/operators';
 import {merge, fromEvent, Observable, concat} from 'rxjs';
-import {createHttpObservable} from '../common/util';
 import {Lesson} from '../model/lesson';
+import {createHttpObservable} from '../common/util';
+import {Store} from '../common/store.service';
 
 
 @Component({
@@ -25,55 +26,62 @@ import {Lesson} from '../model/lesson';
 })
 export class CourseComponent implements OnInit, AfterViewInit {
 
-    course$: Observable<Course>;
+    courseId:number;
+
+    course$ : Observable<Course>;
 
     lessons$: Observable<Lesson[]>;
 
 
     @ViewChild('searchInput') input: ElementRef;
 
-    constructor(private route: ActivatedRoute) {
+    constructor(private route: ActivatedRoute, private store: Store) {
 
 
     }
 
     ngOnInit() {
 
-        const courseId = this.route.snapshot.params['id'];
+        this.courseId = this.route.snapshot.params['id'];
 
-        this.course$ = createHttpObservable(`/api/courses/${courseId}`).pipe(shareReplay());
+        this.course$ = this.store.selectCourseById(this.courseId);
 
     }
 
     ngAfterViewInit() {
 
-
-        const searchLessons$ = fromEvent<any>(this.input.nativeElement, 'keyup')
+        const searchLessons$ =  fromEvent<any>(this.input.nativeElement, 'keyup')
             .pipe(
-                map((event) => event.target.value),
+                map(event => event.target.value),
                 debounceTime(400),
                 distinctUntilChanged(),
-                withLatestFrom(this.course$),
-                switchMap(([search, course]) => this.loadLessons(course, search))
+                switchMap(search => this.loadLessons(search))
             );
 
-        const initialLessons$ = this.course$
-            .pipe(
-                concatMap(course => this.loadLessons(course))
-            );
+        const initialLessons$ = this.loadLessons();
 
-
-        this.lessons$ = concat<Lesson[]>(initialLessons$, searchLessons$);
+        this.lessons$ = concat(initialLessons$, searchLessons$);
 
     }
 
-
-    loadLessons(course:Course, search = '') {
-        return createHttpObservable(`/api/lessons?courseId=${course.id}&pageSize=${course.lessonsCount}&filter=${search}`)
+    loadLessons(search = ''): Observable<Lesson[]> {
+        return createHttpObservable(
+            `/api/lessons?courseId=${this.courseId}&pageSize=100&filter=${search}`)
             .pipe(
-                map(res => res['payload'])
+                map(res => res["payload"])
             );
     }
 
 
 }
+
+
+
+
+
+
+
+
+
+
+

@@ -1,7 +1,9 @@
 
 .course-image {
-    max-width: 200px;
+    max-width: 300px;
+    border-radius: 4px;
 }
+
 
 .about {
     padding: 40px;
