@@ -26,7 +26,7 @@ export class CourseComponent implements OnInit, AfterViewInit {
 
 
 
-    @ViewChild('searchInput') input: ElementRef;
+    @ViewChild('searchInput', { static: true }) input: ElementRef;
 
     constructor(private route: ActivatedRoute) {
 
