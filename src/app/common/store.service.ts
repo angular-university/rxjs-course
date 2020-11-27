@@ -40,7 +40,7 @@ export class Store {
         return this.filterByCategory('ADVANCED');
     }
 
-    selectCourseById(courseId:number) {
+    selectCourseById(courseId: number) {
         return this.courses$
             .pipe(
                 map(courses => courses.find(course => course.id == courseId)),
@@ -57,7 +57,7 @@ export class Store {
             );
     }
 
-    saveCourse(courseId:number, changes): Observable<any> {
+    saveCourse(courseId: number, changes): Observable<any> {
 
         const courses = this.subject.getValue();
 

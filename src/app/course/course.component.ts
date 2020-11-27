@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {Course} from "../model/course";
+import {ActivatedRoute} from '@angular/router';
+import {Course} from '../model/course';
 import {
     debounceTime,
     distinctUntilChanged,
@@ -26,9 +26,9 @@ import {Store} from '../common/store.service';
 })
 export class CourseComponent implements OnInit, AfterViewInit {
 
-    courseId:number;
+    courseId: number;
 
-    course$ : Observable<Course>;
+    course$: Observable<Course>;
 
     lessons$: Observable<Lesson[]>;
 
@@ -68,7 +68,7 @@ export class CourseComponent implements OnInit, AfterViewInit {
         return createHttpObservable(
             `/api/lessons?courseId=${this.courseId}&pageSize=100&filter=${search}`)
             .pipe(
-                map(res => res["payload"])
+                map(res => res['payload'])
             );
     }
 

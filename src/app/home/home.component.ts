@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Course} from "../model/course";
+import {Course} from '../model/course';
 import {interval, noop, Observable, of, throwError, timer} from 'rxjs';
 import {catchError, delay, delayWhen, finalize, map, retryWhen, shareReplay, tap} from 'rxjs/operators';
 import {createHttpObservable} from '../common/util';
@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
     advancedCourses$: Observable<Course[]>;
 
 
-    constructor(private store:Store) {
+    constructor(private store: Store) {
 
     }
 
