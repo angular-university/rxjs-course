@@ -44,6 +44,11 @@ In order to be able to provide realistic examples, we will need in our playgroun
 
     npm run server
 
+If it throws "An unhandled exception occurred: Project 'server' does not exist." error try following command 
+
+    ./node_modules/.bin/ts-node -P ./server/server.tsconfig.json ./server/server.ts
+
+
 This is a small Node REST API server.
 
 # To run the Development UI Server
