@@ -3,7 +3,7 @@
 
 This repository contains the code of the [RxJs In Practice Course](https://angular-university.io/course/rxjs-course).
 
-This course repository is updated to Angular v11.
+This course repository is updated to Angular v12.
 
 # Installation pre-requisites
 
