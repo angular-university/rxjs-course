@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-
+import { interval } from 'rxjs';
 @Component({
   selector: 'about',
   templateUrl: './about.component.html',
@@ -10,18 +10,22 @@ export class AboutComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    document.addEventListener('click', evt => {
-      console.log(evt);
-      
-      setTimeout(() => {
-        console.log('timeout elapsed')
 
-        let counter = 0;
-        setInterval(() => {
-          console.log(counter);
-          counter++;
-        }, 1000);
-      }, 3000);
-    });
+    const interval$ = interval(1000);
+
+    // Using built-in JavaScript api
+    // document.addEventListener('click', evt => {
+    //   console.log(evt);
+      
+    //   setTimeout(() => {
+    //     console.log('timeout elapsed')
+
+    //     let counter = 0;
+    //     setInterval(() => {
+    //       console.log(counter);
+    //       counter++;
+    //     }, 1000);
+    //   }, 3000);
+    // });
   }
 }
