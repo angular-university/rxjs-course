@@ -80,3 +80,38 @@ setTimeout finishes exectuting after 3 seconds
 click and setInterval are multi value streams
 they continuesly emit and they never compelte
 */
+
+
+
+/*
+Video 6 - what is Rxjs and what problem it solves
+
+1. combine all 3 streams together
+2. after a user clicks on the certain part of the screen
+3. we might want to wait for 3 seconds and only then emit the interval
+
+*/
+
+/* ----- callback hell ---- */
+/*
+      document.addEventListener('click', evt => {
+        console.log(evt);
+
+        setTimeout(() => {
+          console.log('finished ... ');
+
+
+          let counter = 0;
+          setInterval( ()=> {
+              console.log(counter);
+              counter++;
+          }, 1000)
+        }, 3000)
+      })
+
+      this block of code will not work until you click
+      somewhere on the screen
+
+      you will see a duplicate execution
+      if you click on the screen multiple times
+*/
