@@ -13,7 +13,6 @@ import { filter } from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit {
 
-<<<<<<< Updated upstream
     beginnerCourses$: Observable<Course[]>;
 
     advancedCourses$: Observable<Course[]>;
@@ -22,13 +21,6 @@ export class HomeComponent implements OnInit {
     constructor(private store:Store) {
 
     }
-=======
-  beginnerCourses$: Observable<Course[]>;
-  advancedCourses$: Observable<Course[]>;
-
-  constructor(private store: Store) {
-  }
->>>>>>> Stashed changes
 
   ngOnInit() {
 
