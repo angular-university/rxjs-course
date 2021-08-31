@@ -4,12 +4,12 @@ import {interval, noop, Observable, of, throwError, timer} from 'rxjs';
 import {catchError, delay, delayWhen, finalize, map, retryWhen, shareReplay, tap} from 'rxjs/operators';
 import {createHttpObservable} from '../common/util';
 import {Store} from '../common/store.service';
-
+import { filter } from 'rxjs/operators';
 
 @Component({
-    selector: 'home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css']
+  selector: 'home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
 
@@ -22,14 +22,32 @@ export class HomeComponent implements OnInit {
 
     }
 
-    ngOnInit() {
+  ngOnInit() {
 
-        const courses$ = this.store.courses$;
+    // const courses$ = this.store.courses$;
+    this.beginnerCourses$ = this.store.selectBeginnerCourses();
+    this.advancedCourses$ = this.store.selectAdvancedCourses();
 
-        this.beginnerCourses$ = this.store.selectBeginnerCourses();
+    const http$ = createHttpObservable('/api/courses');
 
-        this.advancedCourses$ = this.store.selectAdvancedCourses();
+    const courses$: Observable<Course[]> = http$
+      .pipe(
+        map(res => Object.values(res['payload']))
+      );
 
-    }
+      // section 2 video - 12  - reactive design
+    this.beginnerCourses$ = courses$
+      .pipe(
+        map(courses => courses
+          .filter( course => course.category === 'BEGINNER'))
+      );
 
+      this.advancedCourses$ = courses$
+      .pipe(
+        map(courses => courses
+          .filter( course => course.category === 'ADVANCED'))
+      );
+
+  }
 }
+
