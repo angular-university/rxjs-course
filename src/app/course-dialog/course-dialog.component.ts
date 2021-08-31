@@ -16,7 +16,6 @@ import {Store} from '../common/store.service';
 export class CourseDialogComponent implements AfterViewInit {
 
     form: FormGroup;
-
     course:Course;
 
     @ViewChild('saveButton', { static: true }) saveButton: ElementRef;
@@ -42,6 +41,27 @@ export class CourseDialogComponent implements AfterViewInit {
 
     ngAfterViewInit() {
 
+      // this.form.valueChanges.subscribe(console.log);
+
+      this.form.valueChanges
+        .pipe(
+          filter(() =>
+            this.form.valid)
+      ).subscribe(changes => {
+
+        const saveCourse$ = fromPromise(fetch(`/api/courses/${this.course.id}`),
+          {
+            method: 'PUT',
+            body: JSON.stringify(changes),
+            headers: {
+              'content-type' : 'application/json'
+            }
+          }));
+
+        // we subscribe to an observable
+        saveCourse$.subscribe();
+
+        });
     }
 
     save() {
