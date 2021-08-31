@@ -32,9 +32,9 @@ export class AboutComponent implements OnInit {
     of values containing the click event
   */
 
-      document.addEventListener('click', evt => {
-        console.log(evt)
-      })
+      // document.addEventListener('click', evt => {
+      //   console.log(evt)
+      // })
 
       /*
         F12
@@ -48,11 +48,11 @@ export class AboutComponent implements OnInit {
       // then we will ini to 0 and
       // we are going to emit a new value over time
       // and increment the counter each time that we emit our value
-      let counter = 0;
-      setInterval(() => {
-        console.log(counter);
-        counter++;
-      }, 1000);
+      // let counter = 0;
+      // setInterval(() => {
+      //   console.log(counter);
+      //   counter++;
+      // }, 1000);
 
 
   /* now we have 2 independent streams of values

@@ -13,22 +13,11 @@ import { filter } from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit {
 
-<<<<<<< Updated upstream
-    beginnerCourses$: Observable<Course[]>;
-
-    advancedCourses$: Observable<Course[]>;
-
-
-    constructor(private store:Store) {
-
-    }
-=======
   beginnerCourses$: Observable<Course[]>;
   advancedCourses$: Observable<Course[]>;
 
   constructor(private store: Store) {
   }
->>>>>>> Stashed changes
 
   ngOnInit() {
 
@@ -36,12 +25,14 @@ export class HomeComponent implements OnInit {
     this.beginnerCourses$ = this.store.selectBeginnerCourses();
     this.advancedCourses$ = this.store.selectAdvancedCourses();
 
+    // const http$: Observable<Course[]> = createHttpObservable('/api/courses');
     const http$ = createHttpObservable('/api/courses');
 
     const courses$: Observable<Course[]> = http$
       .pipe(
         map(res => Object.values(res['payload']))
       );
+      // console.log(courses$);
 
       // section 2 video - 12  - reactive design
     this.beginnerCourses$ = courses$
@@ -55,6 +46,34 @@ export class HomeComponent implements OnInit {
         map(courses => courses
           .filter( course => course.category === 'ADVANCED'))
       );
+
+    //   this.beginnerCourses$ = http$
+    //   .pipe(
+    //     map(
+    //       filter(course => course.category === 'BEGINNER')
+    // );
+
+
+
+    // //   this.advancedCourses$ = http$
+    // //   .pipe(
+    // //     map(courses => courses
+    // //       .filter(course => course.category === 'ADVANCED'))
+    // // );
+
+
+    //   // courses$.subscribe(
+    //     // courses => {
+    //     //   this.beginnerCourses$ = courses
+    //     //     .filter(course => course.category === 'BEGINNER');
+
+    //   //     this.advancedCourses$ = courses
+    //   //       .filter(course => course.category === 'ADVANCED');
+    //   //     // console.log(typeof courses)
+    //   //   },
+    //   //   noop,
+    //   //   () => console.log('completed')
+    //   // );
 
   }
 }
