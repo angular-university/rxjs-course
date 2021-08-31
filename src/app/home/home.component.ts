@@ -14,21 +14,37 @@ import {Store} from '../common/store.service';
 export class HomeComponent implements OnInit {
 
     beginnerCourses$: Observable<Course[]>;
-
     advancedCourses$: Observable<Course[]>;
 
-
     constructor(private store:Store) {
-
     }
 
     ngOnInit() {
 
-        const courses$ = this.store.courses$;
+      // const courses$ = this.store.courses$;
+      this.beginnerCourses$ = this.store.selectBeginnerCourses();
+      this.advancedCourses$ = this.store.selectAdvancedCourses();
 
-        this.beginnerCourses$ = this.store.selectBeginnerCourses();
+      const http$ = createHttpObservable('/api/courses');
 
-        this.advancedCourses$ = this.store.selectAdvancedCourses();
+      const courses$ = http$
+        .pipe(
+          map(res =>  Object.values(res["payload"] ))
+      );
+
+      courses$.subscribe(
+        courses => {
+          this.beginnerCourses$ = courses
+            .filter(course => course.category === 'BEGINNER');
+
+          this.advancedCourses$ = courses
+            .filter(course => course.category === 'ADVANCED');
+          // console.log(typeof courses)
+        },
+        noop,
+        () => console.log('completed')
+      );
+
 
     }
 

@@ -115,3 +115,47 @@ Video 6 - what is Rxjs and what problem it solves
       you will see a duplicate execution
       if you click on the screen multiple times
 */
+<<<<<<< Updated upstream
+=======
+
+
+      // const http$ = new Observable(observer => {
+      //   fetch('/api/courses')
+      //     .then(response => {
+      //       return response.json();
+      //     })
+
+      //     .then(body => {
+      //       observer.next(body);
+      //       observer.complete();
+      //     })
+      //     .catch(err => {
+      //       observer.error(err);
+      //     });
+      // });
+
+
+      // const http$ = createHttpObservable('/api/courses');
+
+      // const courses$ = http$
+      //   .pipe(
+      //     map(res =>  Object.values(res["payload"] ))
+      // );
+
+      // courses$.subscribe(
+      //   courses => {
+      //     console.log(courses)
+      //     // console.log(typeof courses)
+      //   },
+      //   noop,
+      //   () => console.log('completed')
+      // );
+
+      // http$.subscribe(
+      //   courses => console.log(courses),
+      //   noop,
+      //   () => console.log('completed')
+      // );
+  }
+}
+>>>>>>> Stashed changes
