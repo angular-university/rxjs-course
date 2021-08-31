@@ -45,18 +45,16 @@ export class CourseDialogComponent implements AfterViewInit {
 
       this.form.valueChanges
         .pipe(
-          filter(() =>
-            this.form.valid)
-      ).subscribe(changes => {
-
-        const saveCourse$ = fromPromise(fetch(`/api/courses/${this.course.id}`),
-          {
-            method: 'PUT',
-            body: JSON.stringify(changes),
-            headers: {
-              'content-type' : 'application/json'
-            }
-          }));
+          filter(() => this.form.valid)
+        ).subscribe(changes => {
+          const saveCourse$ = fromPromise(fetch(`/api/courses/${this.course.id}`,
+            {
+              method: 'PUT',
+              body: JSON.stringify(changes),
+              headers: {
+                'content-type': 'application/json'
+              }
+            }));
 
         // we subscribe to an observable
         saveCourse$.subscribe();
