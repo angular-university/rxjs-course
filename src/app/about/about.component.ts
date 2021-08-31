@@ -115,8 +115,7 @@ Video 6 - what is Rxjs and what problem it solves
       you will see a duplicate execution
       if you click on the screen multiple times
 */
-<<<<<<< Updated upstream
-=======
+
 
 
       // const http$ = new Observable(observer => {
@@ -156,6 +155,5 @@ Video 6 - what is Rxjs and what problem it solves
       //   noop,
       //   () => console.log('completed')
       // );
-  }
-}
+
 
