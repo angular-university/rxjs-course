@@ -14,7 +14,6 @@ import { filter } from 'rxjs/operators';
 export class HomeComponent implements OnInit {
 
     beginnerCourses$: Observable<Course[]>;
-
     advancedCourses$: Observable<Course[]>;
 
 
@@ -25,10 +24,10 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
     // const courses$ = this.store.courses$;
+    const http$ = createHttpObservable('/api/courses');
     this.beginnerCourses$ = this.store.selectBeginnerCourses();
     this.advancedCourses$ = this.store.selectAdvancedCourses();
 
-    const http$ = createHttpObservable('/api/courses');
 
     const courses$: Observable<Course[]> = http$
       .pipe(
