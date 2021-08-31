@@ -32,10 +32,19 @@ export class HomeComponent implements OnInit {
 
     const courses$: Observable<Course[]> = http$
       .pipe(
-        map(res => Object.values(res['payload']))
+        // tap operatot that is meant ot  be used to produce
+        // side effects in our observable schema
+        // we want to update somethingthing outside of the observable shein
+        // such as updating a variable at the level of the component
+        // or issue a login statement
+        tap( () => console.log('http request executed')),
+        map(res => Object.values(res['payload'])),
+        // SHAREREPLAY() operator is going to make sure
+        //  that our http response is going to be passed to each subscription
+        shareReplay()
       );
 
-      // section 2 video - 12  - reactive design
+    courses$.subscribe();
     this.beginnerCourses$ = courses$
       .pipe(
         map(courses => courses
@@ -51,3 +60,16 @@ export class HomeComponent implements OnInit {
   }
 }
 
+/**
+ * this.beginnerCourses$ and this.advancedCourses$ subscriptions
+ * is going to trigger the execution of a separate http request
+ * because each subscription is taking over the blueprint of the stream
+ * that we have here  courses$
+      .pipe(
+        map(courses => courses
+          .filter( course => course.category === 'BEGINNER'))
+      );
+  * and it is using to instatiate the concreame stream of values
+   *  go to network tab click on xhr network reques /courses will be pulled twice
+
+*/
