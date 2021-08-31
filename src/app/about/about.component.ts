@@ -9,13 +9,12 @@ import {
     of,
     timer,
     merge,
-    Subject,
     BehaviorSubject,
     AsyncSubject,
     ReplaySubject
 } from 'rxjs';
 import {delayWhen, filter, map, take, timeout} from 'rxjs/operators';
-import {createHttpObservable} from '../common/util';
+import { createHttpObservable } from '../util';
 
 
 @Component({
@@ -32,9 +31,9 @@ export class AboutComponent implements OnInit {
     of values containing the click event
   */
 
-      document.addEventListener('click', evt => {
-        console.log(evt)
-      })
+      // document.addEventListener('click', evt => {
+      //   console.log(evt)
+      // })
 
       /*
         F12
@@ -48,11 +47,11 @@ export class AboutComponent implements OnInit {
       // then we will ini to 0 and
       // we are going to emit a new value over time
       // and increment the counter each time that we emit our value
-      let counter = 0;
-      setInterval(() => {
-        console.log(counter);
-        counter++;
-      }, 1000);
+      // let counter = 0;
+      // setInterval(() => {
+      //   console.log(counter);
+      //   counter++;
+      // }, 1000);
 
 
   /* now we have 2 independent streams of values
@@ -65,12 +64,10 @@ export class AboutComponent implements OnInit {
   // setTimeout emits a value and completes
   // the other 2 emit multiple values and never complete
 
-  setTimeout(() => {
-    console.log('finished ... ')
-  }, 3000)
+      setTimeout(() => {
+        console.log('finished ... ');
+      }, 3000);
 
-  }
-}
 
 /*
 setInterval continuesly emits the values
@@ -115,3 +112,44 @@ Video 6 - what is Rxjs and what problem it solves
       you will see a duplicate execution
       if you click on the screen multiple times
 */
+
+
+      // const http$ = new Observable(observer => {
+      //   fetch('/api/courses')
+      //     .then(response => {
+      //       return response.json();
+      //     })
+
+      //     .then(body => {
+      //       observer.next(body);
+      //       observer.complete();
+      //     })
+      //     .catch(err => {
+      //       observer.error(err);
+      //     });
+      // });
+
+
+      const http$ = createHttpObservable('/api/courses');
+
+      const courses$ = http$
+        .pipe(
+          map(res =>  Object.values(res["payload"] ))
+      );
+
+      courses$.subscribe(
+        courses => {
+          console.log(courses)
+          // console.log(typeof courses)
+        },
+        noop,
+        () => console.log('completed')
+      );
+
+      // http$.subscribe(
+      //   courses => console.log(courses),
+      //   noop,
+      //   () => console.log('completed')
+      // );
+  }
+}
