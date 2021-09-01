@@ -19,99 +19,75 @@ import {createHttpObservable} from '../common/util';
 
 
 @Component({
-    selector: 'about',
-    templateUrl: './about.component.html',
-    styleUrls: ['./about.component.css']
+  selector: 'about',
+  templateUrl: './about.component.html',
+  styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
 
-    ngOnInit() {
+  ngOnInit() {
 
-  /*
-    every click that you do in the app that will be a stream
-    of values containing the click event
-  */
+    /**
+     * Concat is all about completion,
+     * waiting for when observable to complete before
+     * subscribing and using the next observable.
+     *
+     * In this lesson and in the following one,
+     * we are going to be covering a new strategy
+     * for combining observables,
+     *
+     * which is going to be the merge strategy.
+     * Let's first introduce, merge and then cover merge map.
+     */
 
-      document.addEventListener('click', evt => {
-        console.log(evt)
-      })
+      /**
+       * So what is the use case for merge?
+       * Going back here to our Marrable diagram,
+       * we're going to see that merge should be used.
+       * If we want to take multiple observables,
+       * subscribe to all of them and notice here at the same time
+       * and take the values of each of these observables.
+       * Merge is ideal for performing asynchronous
+       * operations in parallel.
+       */
 
-      /*
-        F12
-        so what we see here is whnever we click on the mouse is
-        an example of a stream of values that are being emitted
-        over time
-      */
+    /**
+     * So as you can see, the first observable is emitting values more
+     * or less at the same time as the second observable was one of
+     * the two observables emits a value.
+     *
+     * stream 1 : a, b, c, d  - complete
+     * stream 2 : e, f, g, h - complete
+     *
+     * merge output is a, e, b, f, c, g, d, h
+     *
+     * The same for the second observable as
+     * each of these observables emit a new value.
+     *
+     * observable is completed only
+     * when all the merged observables are completed.
+     *
+     * On the other hand, if any of these observables frozen error,
+     * then the resulting merged observable is going to air out
+     * immediately.
+     */
 
-      // emitting a value each second
-      // we will define a variable,
-      // then we will ini to 0 and
-      // we are going to emit a new value over time
-      // and increment the counter each time that we emit our value
-      let counter = 0;
-      setInterval(() => {
-        console.log(counter);
-        counter++;
-      }, 1000);
+    /**
+     * Example 1
+     * We are going to start by defining here one stream.
+     */
 
+    const interval1$ = interval(1000);
+    const interval2$ = interval1$.pipe(
+      map(val => 10 * val));
+    const result$ = merge(interval1$, interval2$);
+    result$.subscribe(console.log);
 
-  /* now we have 2 independent streams of values
-  clicks and interval.
-  Let's add another type of stream: setTimeout
-  */
-
-  // this is async operation
-  // this stream emits only one value and then completes it
-  // setTimeout emits a value and completes
-  // the other 2 emit multiple values and never complete
-
-  setTimeout(() => {
-    console.log('finished ... ')
-  }, 3000)
+    /**
+     * As we can see, the merge strategy is ideal for
+     * performing long running operations in parallel and getting
+     * the results of each of the operations combined.
+     */
 
   }
 }
-
-/*
-setInterval continuesly emits the values
-click streams only when clicked on
-setTimeout finishes exectuting after 3 seconds
-
-click and setInterval are multi value streams
-they continuesly emit and they never compelte
-*/
-
-
-
-/*
-Video 6 - what is Rxjs and what problem it solves
-
-1. combine all 3 streams together
-2. after a user clicks on the certain part of the screen
-3. we might want to wait for 3 seconds and only then emit the interval
-
-*/
-
-/* ----- callback hell ---- */
-/*
-      document.addEventListener('click', evt => {
-        console.log(evt);
-
-        setTimeout(() => {
-          console.log('finished ... ');
-
-
-          let counter = 0;
-          setInterval( ()=> {
-              console.log(counter);
-              counter++;
-          }, 1000)
-        }, 3000)
-      })
-
-      this block of code will not work until you click
-      somewhere on the screen
-
-      you will see a duplicate execution
-      if you click on the screen multiple times
-*/
