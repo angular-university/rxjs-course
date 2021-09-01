@@ -40,31 +40,6 @@ export class CourseDialogComponent implements AfterViewInit {
 
   ngAfterViewInit() {
 
-    /**
-     * this.form.valueChanges -- we are taking this observable
-     * which is the value that form ".subscribe(changes =>"
-     * and we are converting in const saveCourses$  to a 2nd save observable
-     * but we are not waiting for it to complete a save
-     *
-     * 1st thing we take(fromPromise(fetch(`/api/courses/${this.course.id}`,)
-     * and assign it to a new function saveCourse()
-     * 2nd it will take 1 argument (changes) which are the form changes
-     * and going to get us back and obserable.
-     *
-     * 3rd step = .subscribe(const saveCourse$ = this.saveCourse(changes)
-     *
-     *
-     */
-
-    /**
-     * we want to take the form values turn them into HTTP request
-     * and wait for the first http request to complete
-     * before creating the second http request
-     * Map concat map is taking the values from value changes,
-     * creating new observables, subscribing to themand concatenating
-     * them together.
-     */
-
     this.form.valueChanges
       .pipe(
         filter(() => this.form.valid),
