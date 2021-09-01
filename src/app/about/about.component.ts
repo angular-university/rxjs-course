@@ -25,16 +25,8 @@ import {createHttpObservable} from '../common/util';
 })
 export class AboutComponent implements OnInit {
 
-    ngOnInit() {
+  ngOnInit() {
 
 
-    }
-
-
+  }
 }
-
-
-
-
-
-
