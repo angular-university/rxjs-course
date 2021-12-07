@@ -3,14 +3,14 @@
 
 This repository contains the code of the [RxJs In Practice Course](https://angular-university.io/course/rxjs-course).
 
-This course repository is updated to Angular v12:
+This course repository is updated to Angular v13:
 
 ![RxJs In Practice Course](https://s3-us-west-1.amazonaws.com/angular-university/course-images/rxjs-in-practice-course.png)
 
 
 # Installation pre-requisites
 
-Please use Node 14 (Long Term Support version).
+Please use Node 16 (Long Term Support version).
 
 
 # Installing the Angular CLI
