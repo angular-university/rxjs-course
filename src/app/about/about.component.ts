@@ -17,9 +17,18 @@ export class AboutComponent implements OnInit {
 
     const timer$: Observable<number> = timer(3000, 1000);
 
-    timer$.subscribe((val) => console.log("streamTimer 1 => " + val));
+    const sub = timer$.subscribe((val) =>
+      console.log("streamTimer 1 => " + val)
+    );
+
+    setTimeout(() => sub.unsubscribe(), 5000);
 
     const click$: Observable<Event> = fromEvent(document, "click");
-    click$.subscribe((evt) => console.log(evt));
+
+    click$.subscribe(
+      (evt) => console.log(evt),
+      (err) => console.log(err),
+      () => console.log("completed")
+    );
   }
 }
