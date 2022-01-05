@@ -10,6 +10,8 @@ export class AboutComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
+    /*
+    // BEGINNING UNDERSTANDING OF CORE CONCEPTS!!!
     const interval$: Observable<number> = interval(1000);
 
     // interval$.subscribe((val) => console.log("streamInterval 1 => " + val));
@@ -28,6 +30,30 @@ export class AboutComponent implements OnInit {
     click$.subscribe(
       (evt) => console.log(evt),
       (err) => console.log(err),
+      () => console.log("completed")
+    );
+
+    */
+
+    //BUILDING HTTP OBSERVABLE
+    const http$ = new Observable((observer) => {
+      fetch('/api/courses')
+        .then((response) => {
+          return response.json();
+        })
+        .then((body) => {
+          observer.next(body);
+
+          observer.complete();
+        })
+        .catch((err) => {
+          observer.error(err);
+        })
+    });
+
+    http$.subscribe(
+      (courses: any) => console.log(courses),
+      () => {}, //noop is the same
       () => console.log("completed")
     );
   }
