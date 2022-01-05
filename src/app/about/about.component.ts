@@ -36,19 +36,6 @@ export class AboutComponent implements OnInit {
     );
 
     */
-
-    const http$ = createHttpObservable('/api/courses');
-
-    const courses$ = http$.
-      pipe(
-        map(res => Object.values(res['payload']))
-      );
-
-    courses$.subscribe(
-      (courses: any) => console.log(courses),
-      () => {}, //noop is the same
-      () => console.log("completed")
-    );
   }
 }
 
