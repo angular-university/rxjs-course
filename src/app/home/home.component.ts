@@ -27,7 +27,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     const http$ = createHttpObservable("/api/courses");
-    console.log(http$.subscribe((data) => console.log(data)));
 
     /*
     // RENDERING COURSES USING FILTER
