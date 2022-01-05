@@ -1,11 +1,13 @@
-
-
 export interface Course {
-    id:number;
-    description:string;
-    iconUrl: string;
-    courseListIcon: string;
-    longDescription: string;
-    category:string;
-    lessonsCount:number;
+  id: number;
+  description: string;
+  iconUrl: string;
+  courseListIcon: string;
+  longDescription: string;
+  category: string;
+  lessonsCount: number;
+}
+
+export interface Payload {
+  payload: Array<Course>;
 }
