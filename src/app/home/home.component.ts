@@ -28,10 +28,10 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     const http$ = createHttpObservable("/api/courses");
 
-    /*
     // RENDERING COURSES USING FILTER
     const courses$: Observable<Course[]> = http$.pipe(
-      map((res) => Object.values(res["payload"]))
+      map((res) => Object.values(res["payload"])),
+      shareReplay() //Operator to make just one API call (See inspector when open home component)
     );
 
     this.beginnersCourses$ = courses$.pipe(
@@ -49,10 +49,9 @@ export class HomeComponent implements OnInit {
         )
       )
     );
-    */
 
     //SAME AS ABOVE JUST USING EXTERNAL FUNCTION IN HOME SERVICE
-    this.beginnersCourses$ = this.homeService.splitCourses(http$, "BEGINNER");
-    this.advancedCourses$ = this.homeService.splitCourses(http$, "ADVANCED");
+    // this.beginnersCourses$ = this.homeService.splitCourses(http$, "BEGINNER");
+    // this.advancedCourses$ = this.homeService.splitCourses(http$, "ADVANCED");
   }
 }
