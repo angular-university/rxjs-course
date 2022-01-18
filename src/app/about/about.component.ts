@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { fromEvent, interval, Observable, timer } from "rxjs";
+import { fromEvent, interval, merge, Observable, timer } from "rxjs";
 import { map } from "rxjs/operators";
 import { createHttpObservable } from "../common/util";
 
@@ -36,7 +36,13 @@ export class AboutComponent implements OnInit {
     );
 
     */
+
+    //Merge Operator
+
+    const interval1$ = interval(1000);
+    const interval2$ = interval1$.pipe(map((val) => 10 * val));
+
+    const results$ = merge(interval1$, interval2$);
+    results$.subscribe(console.log);
   }
 }
-
-
