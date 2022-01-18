@@ -1,9 +1,13 @@
 import { Observable } from "rxjs";
+import { subscribeOn } from "rxjs/operators";
 import { Payload } from "../model/course";
 
 export function createHttpObservable(url: string): Observable<Payload> {
   return new Observable((observer) => {
-    fetch(url)
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    fetch(url, { signal })
       .then((response) => {
         return response.json();
       })
@@ -15,5 +19,7 @@ export function createHttpObservable(url: string): Observable<Payload> {
       .catch((err) => {
         observer.error(err);
       });
+
+    return () => controller.abort();
   });
 }
