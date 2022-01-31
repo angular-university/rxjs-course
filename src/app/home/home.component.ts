@@ -31,7 +31,23 @@ export class HomeComponent implements OnInit {
     // RENDERING COURSES USING FILTER
     const courses$: Observable<Course[]> = http$.pipe(
       map((res) => Object.values(res["payload"])),
-      shareReplay() //Operator to make just one API call (See inspector when open home component)
+      shareReplay(), //Operator to make just one API call (See inspector when open home component)
+      catchError((err) =>
+        of([
+          {
+            id: 0,
+            description: "RxJs In Practice Course",
+            iconUrl:
+              "https://s3-us-west-1.amazonaws.com/angular-university/course-images/rxjs-in-practice-course.png",
+            courseListIcon:
+              "https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png",
+            longDescription:
+              "Understand the RxJs Observable pattern, learn the RxJs Operators via practical examples",
+            category: "BEGINNER",
+            lessonsCount: 10,
+          },
+        ])
+      )
     );
 
     this.beginnersCourses$ = courses$.pipe(
