@@ -24,6 +24,7 @@ import {
 import { merge, fromEvent, Observable, concat, interval } from "rxjs";
 import { Lesson } from "../model/lesson";
 import { createHttpObservable } from "../common/util";
+import { debug, RxJsLoggingLevel, setRxJsLoggingLevel } from "../common/debug";
 
 @Component({
   selector: "course",
@@ -42,21 +43,25 @@ export class CourseComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.courseId = this.route.snapshot.params["id"];
 
-    this.course$ = createHttpObservable(`/api/courses/${this.courseId}`);
+    this.course$ = createHttpObservable(`/api/courses/${this.courseId}`).pipe(
+      debug(RxJsLoggingLevel.INFO, "Course value")
+    );
+
+    setRxJsLoggingLevel(RxJsLoggingLevel.TRACE);
   }
 
   ngAfterViewInit() {
     const searchLessons$ = fromEvent(this.input.nativeElement, "keyup").pipe(
       map((event: any) => event.target.value),
       startWith(""),
-      debug(RxJsLoggingLevel.INFO, "search"),
+      debug(RxJsLoggingLevel.TRACE, "search"),
       debounceTime(400), //Debounce just make search once the value in input is stable (400 miliseconds in this case)
       distinctUntilChanged(),
-      switchMap((search) => this.loadLessons(search))
+      switchMap((search) => this.loadLessons(search)),
+      debug(RxJsLoggingLevel.DEBUG, "Course value")
     );
     const initialLessons$ = this.loadLessons();
     this.lessons$ = concat(initialLessons$, searchLessons$);
-    this.lessons$.subscribe((result) => console.log("final", result));
   }
 
   loadLessons(search = ""): Observable<Lesson[]> {
