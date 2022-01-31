@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
               "https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png",
             longDescription:
               "Understand the RxJs Observable pattern, learn the RxJs Operators via practical examples",
-            category: "BEGINNER",
+            category: "ADVANCE",
             lessonsCount: 10,
           },
         ])
