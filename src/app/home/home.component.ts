@@ -40,7 +40,8 @@ export class HomeComponent implements OnInit {
         console.log("Finalize is executed!");
       }),
       map((res) => Object.values(res["payload"])),
-      shareReplay() //Operator to make just one API call (See inspector when open home component)
+      shareReplay(), //Operator to make just one API call (See inspector when open home component)
+      retryWhen((errors) => errors.pipe(delayWhen(() => timer(2000))))
     );
 
     this.beginnersCourses$ = courses$.pipe(
