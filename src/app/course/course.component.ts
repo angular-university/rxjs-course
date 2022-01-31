@@ -20,7 +20,6 @@ import {
   concatAll,
   shareReplay,
   throttle,
-  throttleTime,
 } from "rxjs/operators";
 import { merge, fromEvent, Observable, concat, interval } from "rxjs";
 import { Lesson } from "../model/lesson";
@@ -47,19 +46,17 @@ export class CourseComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    const searchLessons$ = fromEvent(this.input.nativeElement, "keyup")
-      .pipe(
-        map((event: any) => event.target.value),
-        throttleTime(500) // Throttle is making the search as soon as stop entering (5 miliseconds delayed in this case)
-        // startWith(""),
-        //debounceTime(400) //Debounce just make search once the value in input is stable (400 miliseconds in this case)
-        // distinctUntilChanged(),
-        // switchMap((search) => this.loadLessons(search))
-      )
-      // const initialLessons$ = this.loadLessons();
-      // this.lessons$ = concat(initialLessons$, searchLessons$);
-      // this.lessons$.subscribe((result) => console.log("final", result));
-      .subscribe(console.log);
+    const searchLessons$ = fromEvent(this.input.nativeElement, "keyup").pipe(
+      map((event: any) => event.target.value),
+      startWith(""),
+      debug(RxJsLoggingLevel.INFO, "search"),
+      debounceTime(400), //Debounce just make search once the value in input is stable (400 miliseconds in this case)
+      distinctUntilChanged(),
+      switchMap((search) => this.loadLessons(search))
+    );
+    const initialLessons$ = this.loadLessons();
+    this.lessons$ = concat(initialLessons$, searchLessons$);
+    this.lessons$.subscribe((result) => console.log("final", result));
   }
 
   loadLessons(search = ""): Observable<Lesson[]> {
