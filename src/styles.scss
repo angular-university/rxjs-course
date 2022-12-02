@@ -1,17 +1,34 @@
 @use '@angular/material' as mat;
-/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
-
-
-// Include non-theme styles for core.
 @include mat.core();
 
-// Define a theme.
-$primary: mat.define-palette(mat.$pink-palette);
-$accent:  mat.define-palette(mat.$deep-purple-palette, A200, A100, A400);
+$dark-primary-text: rgba(black, 0.87);
 
-$theme: mat.define-light-theme($primary, $accent);
+$light-primary-text: white;
 
-// Include all theme styles for the components.
+$primary: mat.define-palette(mat.$pink-palette, 500);
+
+$accent: mat.define-palette(mat.$deep-purple-palette, A200, A100, A400);
+
+$theme: mat.define-light-theme((
+  color: (
+    primary: $primary,
+    accent: $accent,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+
 @include mat.all-component-themes($theme);
+
+.mat-elevation-z7 {
+  box-shadow: 0 4px 5px -2px #0003, 0 7px 10px 1px #00000024, 0 2px 16px 1px #0000001f !important;
+}
+
+.mat-elevation-z10 {
+  box-shadow: 0 6px 6px -3px #0003, 0 10px 14px 1px #00000024, 0 4px 18px 3px #0000001f !important;
+}
