@@ -10,19 +10,19 @@ export class AboutComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    // document.addEventListener("click", (e) => {
-    //   console.log(e);
+    document.addEventListener("click", (event) => {
+      console.log(event);
 
-    //   setTimeout(() => {
-    //     console.log("finished...");
+      setTimeout(() => {
+        console.log("finished...");
 
-    //     let counter = 0;
+        let counter = 0;
 
-    //     setInterval(() => {
-    //       console.log(counter++);
-    //     }, 1000);
-    //   }, 3000);
-    // });
+        setInterval(() => {
+          console.log(counter++);
+        }, 1000);
+      }, 3000);
+    });
 
     const interval$: Observable<number> = timer(3000, 1000);
     const subscription = interval$.subscribe(val => console.log("stream 1 => " + val));
