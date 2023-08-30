@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { Observable, fromEvent, timer } from "rxjs";
+import { Observable, fromEvent, noop, timer } from "rxjs";
+
+import { createHttpObservable } from "../common/util";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: "about",
@@ -10,34 +13,53 @@ export class AboutComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    document.addEventListener("click", (event) => {
-      console.log(event);
 
-      setTimeout(() => {
-        console.log("finished...");
+    // 1.
+    // document.addEventListener("click", (event) => {
+    //   console.log(event);
 
-        let counter = 0;
+    //   setTimeout(() => {
+    //     console.log("finished...");
 
-        setInterval(() => {
-          console.log(counter++);
-        }, 1000);
-      }, 3000);
-    });
+    //     let counter = 0;
 
-    const interval$: Observable<number> = timer(3000, 1000);
-    const subscription = interval$.subscribe(val => console.log("stream 1 => " + val));
+    //     setInterval(() => {
+    //       console.log(counter++);
+    //     }, 1000);
+    //   }, 3000);
+    // });
 
-    setTimeout(() => {
-      subscription.unsubscribe();
-    }, 5000);
+    // 2.
+    // const interval$: Observable<number> = timer(3000, 1000);
+    // const subscription = interval$.subscribe(val => console.log("stream 1 => " + val));
 
-    const click$ = fromEvent(document, 'click');
-    click$.subscribe(
-      // Handle emitted values
-      event => console.log(event),
-      // Handle errors or...
-      error => console.log(error),
-      // ... complete.
+    // setTimeout(() => {
+    //   console.log("unsubscribing...");
+    //   subscription.unsubscribe();
+    // }, 5000);
+
+    // 3.
+    // const click$ = fromEvent(document, 'click');
+    // click$.subscribe(
+    //   // Handle emitted values
+    //   event => console.log(event),
+    //   // Handle errors or...
+    //   error => console.log(error),
+    //   // ... complete.
+    //   () => console.log('completed')
+    // );
+
+    // 4.
+    const http$ = createHttpObservable('/api/courses');
+
+    const courses$ = http$
+      .pipe(
+        map(response => Object.values(response['payload']))
+      )
+
+    courses$.subscribe(
+      courses => console.log(courses),
+      noop,
       () => console.log('completed')
     );
 
