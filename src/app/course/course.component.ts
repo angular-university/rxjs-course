@@ -22,7 +22,8 @@ import {Store} from '../common/store.service';
 @Component({
     selector: 'course',
     templateUrl: './course.component.html',
-    styleUrls: ['./course.component.css']
+    styleUrls: ['./course.component.css'],
+    standalone: false
 })
 export class CourseComponent implements OnInit, AfterViewInit {
 

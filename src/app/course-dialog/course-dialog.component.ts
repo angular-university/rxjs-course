@@ -11,7 +11,8 @@ import {Store} from '../common/store.service';
 @Component({
     selector: 'course-dialog',
     templateUrl: './course-dialog.component.html',
-    styleUrls: ['./course-dialog.component.css']
+    styleUrls: ['./course-dialog.component.css'],
+    standalone: false
 })
 export class CourseDialogComponent implements AfterViewInit {
 
