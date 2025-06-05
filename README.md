@@ -3,14 +3,14 @@
 
 This repository contains the code of the [RxJs In Practice Course](https://angular-university.io/course/rxjs-course).
 
-This course repository is updated to Angular v19:
+This course repository is updated to Angular v20:
 
 ![RxJs In Practice Course](https://s3-us-west-1.amazonaws.com/angular-university/course-images/rxjs-in-practice-course.png)
 
 
 # Installation pre-requisites
 
-Please use Node 18 LTS (Long Term Support version).
+Please use Node 22 LTS (Long Term Support version).
 
 # Installing the Angular CLI
 
@@ -73,6 +73,11 @@ We can checkout the remote branch and start tracking it with a local branch that
 It's also possible to download a ZIP file for a given branch,  using the branch dropdown on this page on the top left, and then selecting the Clone or Download / Download as ZIP button.
 
 # Other Courses
+# Modern Angular With Signals
+
+If you are looking for the [Modern Angular With Signals Course](https://angular-university.io/course/angular-signals-course), the repo with the full code can be found here:
+
+![Modern Angular With Signals Course](https://d3vigmphadbn9b.cloudfront.net/course-images/large-images/angular-signals-course.jpg)
 
 # Angular PWA Course
 
