@@ -1,35 +1,33 @@
 <div class="course">
 
-    <ng-container *ngIf="(course$ | async) as course">
+  @if ((course$ | async); as course) {
+    <h2>{{course?.description}}</h2>
+    <img class="course-thumbnail" [src]="course?.iconUrl">
+  }
 
-        <h2>{{course?.description}}</h2>
+  <mat-form-field class="search-bar">
 
-        <img class="course-thumbnail" [src]="course?.iconUrl">
+    <input matInput placeholder="Type your search" #searchInput autocomplete="off">
 
-    </ng-container>
-
-    <mat-form-field class="search-bar">
-
-        <input matInput placeholder="Type your search" #searchInput autocomplete="off">
-
-    </mat-form-field>
+  </mat-form-field>
 
 
-    <table class="lessons-table mat-elevation-z7" *ngIf="(lessons$ | async) as lessons">
-
-        <thead>
-            <th>#</th>
-            <th>Description</th>
-            <th>Duration</th>
-        </thead>
-
-        <tr *ngFor="let lesson of lessons">
-            <td class="seqno-cell">{{lesson.seqNo}}</td>
-            <td class="description-cell">{{lesson.description}}</td>
-            <td class="duration-cell">{{lesson.duration}}</td>
+  @if ((lessons$ | async); as lessons) {
+    <table class="lessons-table mat-elevation-z7">
+      <thead>
+        <th>#</th>
+        <th>Description</th>
+        <th>Duration</th>
+      </thead>
+      @for (lesson of lessons; track lesson) {
+        <tr>
+          <td class="seqno-cell">{{lesson.seqNo}}</td>
+          <td class="description-cell">{{lesson.description}}</td>
+          <td class="duration-cell">{{lesson.duration}}</td>
         </tr>
-
+      }
     </table>
+  }
 
 
 </div>
