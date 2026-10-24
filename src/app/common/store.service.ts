@@ -59,25 +59,30 @@ export class Store {
 
     saveCourse(courseId:number, changes): Observable<any> {
 
-        const courses = this.subject.getValue();
-
-        const courseIndex = courses.findIndex(course => course.id == courseId);
-
-        const newCourses = courses.slice(0);
-
-        newCourses[courseIndex] = {
-            ...courses[courseIndex],
-            ...changes
-        };
-
-        this.subject.next(newCourses);
-
         return fromPromise(fetch(`/api/courses/${courseId}`, {
             method: 'PUT',
             body: JSON.stringify(changes),
             headers: {
                 'content-type': 'application/json'
             }
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error('Request failed with status code: ' + response.status);
+            }
+
+            const courses = this.subject.getValue();
+            const courseIndex = courses.findIndex(course => course.id == courseId);
+
+            if (courseIndex !== -1) {
+                const newCourses = courses.slice(0);
+                newCourses[courseIndex] = {
+                    ...courses[courseIndex],
+                    ...changes
+                };
+                this.subject.next(newCourses);
+            }
+
+            return response;
         }));
 
     }
